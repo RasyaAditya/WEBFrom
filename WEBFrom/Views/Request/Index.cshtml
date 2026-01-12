@@ -1,0 +1,289 @@
+﻿@model WEBFrom.Models.EmployeeRequest
+
+@{
+    ViewData["Title"] = "Form New Request GD Profile";
+}
+
+<style>
+    :root {
+        --axa-blue: #00008f;
+        --axa-brown: #8d6e63;
+    }
+
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Segoe UI', sans-serif;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+
+    .form-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        max-width: 900px;
+        height: 85vh;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .form-header {
+        background: var(--axa-brown);
+        color: white;
+        padding: 25px;
+        border-radius: 12px 12px 0 0;
+        text-align: center;
+        flex-shrink: 0;
+    }
+
+
+    .form-container form {
+        flex: 1;
+        overflow-y: auto;
+        padding: 40px;
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+        .tab-content.active {
+            display: block;
+        }
+
+    .form-label {
+        font-weight: 600;
+        color: #444;
+    }
+
+    .btn-axa {
+        background: var(--axa-brown);
+        color: white;
+        padding: 10px 25px;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+
+    .form-container form::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .form-container form::-webkit-scrollbar-thumb {
+        background: rgba(0,0,0,0.2);
+        border-radius: 10px;
+    }
+</style>
+
+
+
+<div class="container form-container p-0">
+    <div class="form-header">
+        <h3 class="mb-0">Form New Request GD Profile</h3>
+        <p class="small mb-0 opacity-75">Only For Non FTE / Third Party</p>
+    </div>
+
+    <form asp-action="SubmitRequest" method="post">
+        @Html.AntiForgeryToken()
+
+
+        <div class="tab-content active" id="tab1">
+            <h5 class="text-muted mb-4">Step 1: Requestor Data</h5>
+
+            <div class="mb-3">
+                <label class="form-label">1. Requestor Email *</label>
+                <input asp-for="RequestorEmail" class="form-control" type="email" data-required="true" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">2. Reason</label>
+                <textarea asp-for="Reason" class="form-control" rows="3"></textarea>
+            </div>
+
+            <div class="text-end mt-4">
+                <button type="button" class="btn-axa" onclick="validateStep1()">
+                    Berikutnya &raquo;
+                </button>
+            </div>
+        </div>
+
+
+        <div class="tab-content" id="tab2">
+            <h5 class="text-muted mb-4">Step 2: Employee Details</h5>
+
+
+            <div class="mb-3">
+                <label class="form-label">3. Entity *</label>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="Entity"
+                           value="PT AXA Financial Indonesia" data-required="true" />
+                    <label class="form-check-label">PT AXA Financial Indonesia</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="Entity"
+                           value="PT AXA Mandiri Financial Services" data-required="true" />
+                    <label class="form-check-label">PT AXA Mandiri Financial Services</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="Entity"
+                           value="PT AXA Services Indonesia" data-required="true" />
+                    <label class="form-check-label">PT AXA Services Indonesia</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="Entity"
+                           value="PT AXA Insurance Indonesia" data-required="true" />
+                    <label class="form-check-label">PT AXA Insurance Indonesia</label>
+                </div>
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label">4. Worker Type *</label>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="WorkerType"
+                           value="IMS - Non FTE" data-required="true" />
+                    <label class="form-check-label">IMS - Non FTE</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="WorkerType"
+                           value="Vendor" data-required="true" />
+                    <label class="form-check-label">Vendor</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="WorkerType"
+                           value="Consultant" data-required="true" />
+                    <label class="form-check-label">Consultant</label>
+                </div>
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label">5. ID Person YES</label>
+                <input asp-for="IDPersonYes" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">6. Personal Title *</label>
+                <select asp-for="PersonalTitle" class="form-select" data-required="true">
+                    <option>Mr</option>
+                    <option>Mrs</option>
+                    <option>Ms</option>
+                </select>
+            </div>
+
+            <div class="mb-3"><label class="form-label">7. Full Name (KTP) *</label><input asp-for="FullName" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">8. First Name *</label><input asp-for="FirstName" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">9. Last Name *</label><input asp-for="LastName" class="form-control" data-required="true" /></div>
+
+            <div class="mb-3">
+                <label class="form-label">10. Site Address *</label>
+                <select asp-for="SiteAddress" class="form-select" data-required="true">
+                    <option>AXA Towers - Jakarta</option>
+                    <option>Branch</option>
+                </select>
+            </div>
+
+            <div class="mb-3"><label class="form-label">11. City *</label><input asp-for="City" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">12. Office Floor *</label><input asp-for="OfficeFloor" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">13. Office Phone *</label><input asp-for="OfficePhone" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">14. Office Fax</label><input asp-for="OfficeFax" class="form-control" /></div>
+            <div class="mb-3"><label class="form-label">15. Mobile Phone *</label><input asp-for="MobilePhone" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">16. Email AXA *</label><input asp-for="EmailAxa" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">17. Profesional Family *</label><input asp-for="ProfesionalFamily" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">18. Position Name *</label><input asp-for="TitlePositionName" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">19. Department *</label><input asp-for="Department" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">20. Reporting To *</label><input asp-for="ReportingTo" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">21. Start Date *</label><input asp-for="ContractStartDate" type="date" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">22. End Date *</label><input asp-for="ContractEndDate" type="date" class="form-control" data-required="true" /></div>
+
+            <div class="d-flex justify-content-between mt-5">
+                <button type="button" class="btn btn-light border" onclick="switchTab('tab1')">
+                    &laquo; Kembali
+                </button>
+                <button type="submit" class="btn-axa">
+                    Kirim Formulir ke HR
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+<script>
+    function validateStep1() {
+        if (!validateTab('tab1')) return;
+        switchTab('tab2');
+    }
+
+    document.querySelector('form').addEventListener('submit', function (e) {
+        if (!validateTab('tab2')) {
+            e.preventDefault(); 
+        }
+    });
+
+    
+    function validateTab(tabId) {
+        const tab = document.getElementById(tabId);
+        const requiredFields = tab.querySelectorAll('[data-required="true"]');
+
+
+        for (let field of requiredFields) {
+
+            
+            if (field.type === "radio") {
+                const radios = tab.querySelectorAll(`input[name="${field.name}"]`);
+                const checked = Array.from(radios).some(r => r.checked);
+                if (!checked) {
+                    alert("Mohon lengkapi semua field yang bertanda *");
+                    radios[0].focus();
+                    return false;
+                }
+                continue;
+            }
+
+            
+            if (!field.value || !field.value.trim()) {
+                alert("Mohon lengkapi semua field yang bertanda *");
+                field.focus();
+                return false;
+            }
+
+            
+            if (field.type === "email") {
+                const emailRegex = new RegExp("^[^\\s@@]+@@[^\\s@@]+\\.[^\\s@@]+$");
+                if (!emailRegex.test(field.value)) {
+                    alert("Format email tidak valid");
+                    field.focus();
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+   
+    function switchTab(id) {
+        document.querySelectorAll('.tab-content')
+            .forEach(el => el.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0, 0);
+    }
+</script>
+}
+
+    

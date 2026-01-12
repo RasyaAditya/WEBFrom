@@ -1,0 +1,27 @@
+﻿@model WEBFrom.Models.EmployeeRequest
+
+@{
+    ViewData["Title"] = "Approval Result";
+}
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height:80vh;">
+    <div class="card shadow p-5 text-center" style="max-width:600px;">
+        @if (Model.Status == "Approved")
+        {
+            <h3 class="text-success mb-3">✔ Request Approved</h3>
+        }
+        else
+        {
+            <h3 class="text-danger mb-3">✖ Request Rejected</h3>
+        }
+
+        <p>
+            Request GD Profile untuk:
+        </p>
+        <p class="fw-bold">@Model.FullName</p>
+
+        <p class="mt-3 text-muted">
+            Status ini sudah final dan tidak dapat diubah.
+        </p>
+    </div>
+</div>
