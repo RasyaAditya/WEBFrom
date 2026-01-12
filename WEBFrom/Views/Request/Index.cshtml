@@ -72,6 +72,10 @@
         font-weight: bold;
     }
 
+    .bintang {
+        color: red;
+    }
+
 
     .form-container form::-webkit-scrollbar {
         width: 8px;
@@ -96,10 +100,11 @@
 
 
         <div class="tab-content active" id="tab1">
-            <h5 class="text-muted mb-4">Step 1: Requestor Data</h5>
+            <h5 class="text-muted mb-4">Requestor Data</h5>
+            <h6 class="text-muted mb-4">Buddy or Colleague</h6>
 
             <div class="mb-3">
-                <label class="form-label">1. Requestor Email *</label>
+                <label class="form-label">1. Requestor Email <span class="bintang">*</span></label>
                 <input asp-for="RequestorEmail" class="form-control" type="email" data-required="true" />
             </div>
 
@@ -117,11 +122,18 @@
 
 
         <div class="tab-content" id="tab2">
-            <h5 class="text-muted mb-4">Step 2: Employee Details</h5>
+            <h5 class="text-muted mb-4">New Employee Data</h5>
+            <h6 class="text-muted mb-4">Worker</h6>
 
 
             <div class="mb-3">
-                <label class="form-label">3. Entity *</label>
+                <label class="form-label">3. Entity <span class="bintang">*</span> </label>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="Entity"
+                           value="PT AXA Investment Managers Select Indonesia" data-required="true" />
+                    <label class="form-check-label">PT AXA Investment Managers Select Indonesia</label>
+                </div>
 
                 <div class="form-check">
                     <input class="form-check-input" type="radio" asp-for="Entity"
@@ -150,12 +162,24 @@
 
 
             <div class="mb-3">
-                <label class="form-label">4. Worker Type *</label>
+                <label class="form-label">4. Worker Type <span class="bintang">*</span></label>
 
                 <div class="form-check">
                     <input class="form-check-input" type="radio" asp-for="WorkerType"
                            value="IMS - Non FTE" data-required="true" />
                     <label class="form-check-label">IMS - Non FTE</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="WorkerType"
+                           value="IMS - Temporary" data-required="true" />
+                    <label class="form-check-label">IMS - Temporary</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="WorkerType"
+                           value="Consultant" data-required="true" />
+                    <label class="form-check-label">Consultant</label>
                 </div>
 
                 <div class="form-check">
@@ -166,50 +190,220 @@
 
                 <div class="form-check">
                     <input class="form-check-input" type="radio" asp-for="WorkerType"
-                           value="Consultant" data-required="true" />
-                    <label class="form-check-label">Consultant</label>
+                           value="Internship" data-required="true" />
+                    <label class="form-check-label">Internship</label>
                 </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="WorkerType"
+                           value="Others" data-required="true" />
+                    <label class="form-check-label">Others</label>
+                </div>
+                
             </div>
 
 
             <div class="mb-3">
-                <label class="form-label">5. ID Person YES</label>
+                <label class="form-label">5. ID Person YES [Only for IMS - Non FTE]</label>
                 <input asp-for="IDPersonYes" class="form-control" />
             </div>
 
             <div class="mb-3">
-                <label class="form-label">6. Personal Title *</label>
-                <select asp-for="PersonalTitle" class="form-select" data-required="true">
-                    <option>Mr</option>
-                    <option>Mrs</option>
-                    <option>Ms</option>
-                </select>
+                <label class="form-label">6. Personal Title <span class="bintang">*</span></label>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="PersonalTitle"
+                           value="Mr" data-required="true" />
+                    <label class="form-check-label">Mr</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="PersonalTitle"
+                           value="Mrs" data-required="true" />
+                    <label class="form-check-label">Mrs</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="PersonalTitle"
+                           value="Ms" data-required="true" />
+                    <label class="form-check-label">Ms</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="PersonalTitle"
+                           value="Miss" data-required="true" />
+                    <label class="form-check-label">Miss</label>
+                </div>
+
+                
+
             </div>
 
-            <div class="mb-3"><label class="form-label">7. Full Name (KTP) *</label><input asp-for="FullName" class="form-control" data-required="true" /></div>
-            <div class="mb-3"><label class="form-label">8. First Name *</label><input asp-for="FirstName" class="form-control" data-required="true" /></div>
-            <div class="mb-3"><label class="form-label">9. Last Name *</label><input asp-for="LastName" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">7. Full Name (According to KTP)<span class="bintang">*</span></label><input asp-for="FullName" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">8. First Name<span class="bintang">*</span></label><input asp-for="FirstName" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">9. Last Name (Only 1 Syilable)<span class="bintang">*</span></label><input asp-for="LastName" class="form-control" data-required="true" /></div>
 
             <div class="mb-3">
-                <label class="form-label">10. Site Address *</label>
-                <select asp-for="SiteAddress" class="form-select" data-required="true">
-                    <option>AXA Towers - Jakarta</option>
-                    <option>Branch</option>
-                </select>
+                <label class="form-label">10. Site Address <span class="bintang">*</span></label>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="PersonalTitle"
+                           value="AXA Tower - Jakarta" data-required="true" />
+                    <label class="form-check-label">AXA Tower - Jakarta</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="PersonalTitle"
+                           value="Branch" data-required="true" />
+                    <label class="form-check-label">Branch</label>
+                </div>
+
             </div>
 
-            <div class="mb-3"><label class="form-label">11. City *</label><input asp-for="City" class="form-control" data-required="true" /></div>
-            <div class="mb-3"><label class="form-label">12. Office Floor *</label><input asp-for="OfficeFloor" class="form-control" data-required="true" /></div>
-            <div class="mb-3"><label class="form-label">13. Office Phone *</label><input asp-for="OfficePhone" class="form-control" data-required="true" /></div>
-            <div class="mb-3"><label class="form-label">14. Office Fax</label><input asp-for="OfficeFax" class="form-control" /></div>
-            <div class="mb-3"><label class="form-label">15. Mobile Phone *</label><input asp-for="MobilePhone" class="form-control" data-required="true" /></div>
-            <div class="mb-3"><label class="form-label">16. Email AXA *</label><input asp-for="EmailAxa" class="form-control" data-required="true" /></div>
-            <div class="mb-3"><label class="form-label">17. Profesional Family *</label><input asp-for="ProfesionalFamily" class="form-control" data-required="true" /></div>
-            <div class="mb-3"><label class="form-label">18. Position Name *</label><input asp-for="TitlePositionName" class="form-control" data-required="true" /></div>
-            <div class="mb-3"><label class="form-label">19. Department *</label><input asp-for="Department" class="form-control" data-required="true" /></div>
-            <div class="mb-3"><label class="form-label">20. Reporting To *</label><input asp-for="ReportingTo" class="form-control" data-required="true" /></div>
-            <div class="mb-3"><label class="form-label">21. Start Date *</label><input asp-for="ContractStartDate" type="date" class="form-control" data-required="true" /></div>
-            <div class="mb-3"><label class="form-label">22. End Date *</label><input asp-for="ContractEndDate" type="date" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">11. City <span class="bintang">*</span></label><input asp-for="City" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">12. Office Floor (Example : 10th Floor) <span class="bintang">*</span></label><input asp-for="OfficeFloor" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">13. Office Phone (Start with +62)<span class="bintang">*</span></label><input asp-for="OfficePhone" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">14. Office Fax (Start with +62)<span class="bintang">*</span></label><input asp-for="OfficeFax" class="form-control" /></div>
+            <div class="mb-3"><label class="form-label">15. Mobile Phone No (Start with +62)<span class="bintang">*</span></label><input asp-for="MobilePhone" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">16. Email AXA [firstname.lastname@entity_domain]<span class="bintang">*</span></label><input asp-for="EmailAxa" class="form-control" data-required="true" /></div>
+
+            <div class="mb-3">
+                <label class="form-label">17. Profesional Family <span class="bintang">*</span></label>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Administration Health and Safety" data-required="true" />
+                    <label class="form-check-label">Administration Health and Safety</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Asset Management" data-required="true" />
+                    <label class="form-check-label">Asset Management</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Audit Health and Safety" data-required="true" />
+                    <label class="form-check-label">Audit</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Banking" data-required="true" />
+                    <label class="form-check-label">Banking</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Big Data Science" data-required="true" />
+                    <label class="form-check-label">Big Data Science</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Chief Executive Officer" data-required="true" />
+                    <label class="form-check-label">Chief Executive Officer</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Communication and Corporate Responsibility" data-required="true" />
+                    <label class="form-check-label">Communication and Corporate Responsibility</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Finance, Control and Strategy" data-required="true" />
+                    <label class="form-check-label">Finance, Control and Strategy</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Health" data-required="true" />
+                    <label class="form-check-label">Health</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Human Resources and Diversity" data-required="true" />
+                    <label class="form-check-label">Human Resources and Diversity</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Information Technology" data-required="true" />
+                    <label class="form-check-label">Information Technology</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Insurance, Products and Claims" data-required="true" />
+                    <label class="form-check-label">Insurance, Products and Claims</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Legal and Compliance" data-required="true" />
+                    <label class="form-check-label">Legal and Compliance</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Life and Saving Insurance" data-required="true" />
+                    <label class="form-check-label">Life and Saving Insurance</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Marketing Including Brand and Offer Development" data-required="true" />
+                    <label class="form-check-label">Marketing Including Brand and Offer Development</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Operational Excelience" data-required="true" />
+                    <label class="form-check-label">Operational Excelience</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Procurement" data-required="true" />
+                    <label class="form-check-label">Procurement</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Property & Casual Insurance" data-required="true" />
+                    <label class="form-check-label">Property & Casual Insurance</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Reinsurance" data-required="true" />
+                    <label class="form-check-label">Reinsurance</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Risk Management" data-required="true" />
+                    <label class="form-check-label">Risk Management</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="ProfesionalFamily"
+                           value="Sales and Distribution" data-required="true" />
+                    <label class="form-check-label">Sales and Distribution</label>
+                </div>
+
+               
+
+            </div>
+            <div class="mb-3"><label class="form-label">18. Title / Position Name <span class="bintang">*</span></label><input asp-for="TitlePositionName" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">19. Department [Superior's Department]<span class="bintang">*</span></label><input asp-for="Department" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">20. Reporting To [Manager Name]<span class="bintang">*</span></label><input asp-for="ReportingTo" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">21. Contract Start Date<span class="bintang">*</span></label><input asp-for="ContractStartDate" type="date" class="form-control" data-required="true" /></div>
+            <div class="mb-3"><label class="form-label">22. Contract / Projected End Date <span class="bintang">*</span></label><input asp-for="ContractEndDate" type="date" class="form-control" data-required="true" /></div>
 
             <div class="d-flex justify-content-between mt-5">
                 <button type="button" class="btn btn-light border" onclick="switchTab('tab1')">

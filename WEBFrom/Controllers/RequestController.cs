@@ -134,7 +134,7 @@ namespace WEBFrom.Controllers
                 <!-- Detail -->
                 <td style=""padding-left:20px;"">
                   <p style=""margin:0 0 10px 0;"">
-              Diminta oleh <b>{m.RequestorName}</b> &lt;
+              Diminta oleh <b>{m.LastName?.ToString().ToUpper()} "" {m.FirstName?.ToString()} "" <{m.EmailAxa}></b> &lt;
               <a href=""mailto:{m.RequestorEmail}"" style=""color:#1a73e8; text-decoration:none;"">
                 {m.RequestorEmail}
               </a>&gt;
@@ -147,12 +147,15 @@ namespace WEBFrom.Controllers
                   <p style=""margin:4px 0;""><b>Worker Type :</b> {m.WorkerType}</p>
                   <p style=""margin:4px 0;""><b>ID Person YES :</b> {m.IDPersonYes}</p>
                   <p style=""margin:4px 0;""><b>Personal Title :</b> {m.PersonalTitle}</p>
-                  <p style=""margin:4px 0;""><b>Full Name :</b> {m.FullName}</p>
+                  <p style=""margin:4px 0;""><b>Full Name (According to KTP) :</b> {m.FullName}</p>
                   <p style=""margin:4px 0;""><b>First Name :</b> {m.FirstName}</p>
-                  <p style=""margin:4px 0;""><b>Last Name :</b> {m.LastName}</p>
+                  <p style=""margin:4px 0;""><b>Last Name (Only 1 Syilable) :</b> {m.LastName}</p>
                   <p style=""margin:4px 0;""><b>Site Address :</b> {m.SiteAddress}</p>
                   <p style=""margin:4px 0;""><b>City :</b> {m.City}</p>
-                  <p style=""margin:4px 0;""><b>Office Floor :</b> {m.OfficeFloor}</p>
+                  <p style=""margin:4px 0;""><b>Office Floor (Example : 10th Floor) :</b> {m.OfficeFloor}</p>
+                  <p style=""margin:4px 0;""><b>Office Phone (Start with +62) :</b> {m.OfficePhone}</p>
+                  <p style=""margin:4px 0;""><b>Office Fax (Start with +62) :</b> {m.OfficeFax}</p>
+                  <p style=""margin:4px 0;""><b>Mobile Phone (Start with +62) :</b> {m.MobilePhone}</p>
                   <p style=""margin:4px 0;""><b>Email AXA :</b>
                     <a href=""mailto:{m.EmailAxa}"" style=""color:#1a73e8; text-decoration:none;"">
                       {m.EmailAxa}
@@ -160,10 +163,12 @@ namespace WEBFrom.Controllers
                   </p>
                   <p style=""margin:4px 0;""><b>Professional Family :</b> {m.ProfesionalFamily}</p>
                   <p style=""margin:4px 0;""><b>Title / Position :</b> {m.TitlePositionName}</p>
-                  <p style=""margin:4px 0;""><b>Department :</b> {m.Department}</p>
-                  <p style=""margin:4px 0;""><b>Reporting To :</b> {m.ReportingTo}</p>
+                  <p style=""margin:4px 0;""><b>Department [Superior's Department] :</b> {m.Department}</p>
+                  <p style=""margin:4px 0;""><b>Reporting to [Manager Name] :</b> {m.ReportingTo}</p>
                   <p style=""margin:4px 0;""><b>Contract Start Date :</b> {m.ContractStartDate:yyyy-MM-dd}</p>
-                  <p style=""margin:4px 0;""><b>Contract End Date :</b> {m.ContractEndDate:yyyy-MM-dd}</p>
+                  <p style=""margin:4px 0;""><b>Contract / Projected End Date :</b> {m.ContractEndDate:yyyy-MM-dd}</p>
+
+                  <p style=""margin:4px 0;""><b>Tanggal Dibuat {DateTime.Now.ToString()} </b></p>
                 </td>
 
               </tr>
