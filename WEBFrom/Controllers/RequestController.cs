@@ -226,15 +226,22 @@ namespace WEBFrom.Controllers
         private void SendReplyToUser(EmployeeRequest m)
         {
             string body = $@"
-            <p>Halo {m.RequestorName},</p>
-            <p>Request GD Profile untuk <b>{m.FullName}</b>
-            telah <b>{m.Status}</b>.</p>
-            <p>Terima kasih.</p>";
+            <p>This is an automatic email from the system after submitted form !</p>    
+            
+
+
+            <p>Hi,</p>
+            <p>Your New GD Profile Request for <{m.EmailAxa}> has been {m.Status} </p>
+
+            <p>Thank you</p>
+            <p>Best Regards,</p>
+
+            <p>AXAID GD Request System</p>";
 
             ExecuteMail(
                 SenderEmail,
                 m.RequestorEmail,
-                $"Update Status Request: {m.Status}",
+                $"Your New GD Profile Request has been {m.Status}",
                 body
             );
         }
